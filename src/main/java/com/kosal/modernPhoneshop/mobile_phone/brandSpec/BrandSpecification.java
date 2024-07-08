@@ -23,7 +23,7 @@ public class BrandSpecification implements Specification<Brand>{
 	@Override
 	public Predicate toPredicate(Root<Brand> brand, CriteriaQuery<?> query, CriteriaBuilder cb) {
 		if(brandFilter.getName()!=null) {
-			Predicate name = cb.like(brand.get("name"),"%" + brandFilter.getName()+"%");
+			Predicate name = cb.like(cb.upper(brand.get("name")),"%" + brandFilter.getName().toUpperCase()+"%");
 			predicates.add(name);
 			
 		}
