@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.mapstruct.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -77,11 +78,12 @@ public class BrandController {
 	}*/
 	@GetMapping
 	public ResponseEntity<?>getBrands(@RequestParam Map<String, String>params){
-		List<BrandDTO> collect = service.getBrands(params)
+		Page<Brand> brands = service.getBrands(params);
+		 /*List<BrandDTO> collect = service.getBrands(params)
 		.stream()
 		.map(brand->BrandMapper.INSTANCE.toBrandDTO(brand))
-		.collect(Collectors.toList());
-		return ResponseEntity.ok(collect);
+		.collect(Collectors.toList());*/
+		return ResponseEntity.ok(brands);
 
 }
 
