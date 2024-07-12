@@ -3,6 +3,8 @@ package com.kosal.modernPhoneshop.mobile_phone.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.data.domain.Page;
+
 import com.kosal.modernPhoneshop.mobile_phone.entities.Brand;
 
 public interface BrandService {
@@ -13,6 +15,8 @@ public interface BrandService {
 	void delete(Integer id);
 	//List<Brand>getBrands(String name);
 	//List<Brand> getBrand(String name);
-	List<Brand>getBrands(Map<String, String> params);
+	//List<Brand>getBrands(Map<String, String> params);
+	Page<Brand>getBrands(Map<String, String> params);
+
 
 }
