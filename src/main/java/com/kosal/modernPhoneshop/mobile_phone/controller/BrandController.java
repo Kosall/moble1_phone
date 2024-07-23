@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.kosal.modernPhoneshop.mobile_phone.DTO.BrandDTO;
 import com.kosal.modernPhoneshop.mobile_phone.entities.Brand;
 import com.kosal.modernPhoneshop.mobile_phone.mapper.BrandMapper;
+import com.kosal.modernPhoneshop.mobile_phone.page.DTO.PageDTO;
 import com.kosal.modernPhoneshop.mobile_phone.service.BrandService;
 
 @RestController
@@ -79,11 +80,12 @@ public class BrandController {
 	@GetMapping
 	public ResponseEntity<?>getBrands(@RequestParam Map<String, String>params){
 		Page<Brand> brands = service.getBrands(params);
+		PageDTO dtos= new PageDTO(brands);
 		 /*List<BrandDTO> collect = service.getBrands(params)
 		.stream()
 		.map(brand->BrandMapper.INSTANCE.toBrandDTO(brand))
 		.collect(Collectors.toList());*/
-		return ResponseEntity.ok(brands);
+		return ResponseEntity.ok(dtos);
 
 }
 
