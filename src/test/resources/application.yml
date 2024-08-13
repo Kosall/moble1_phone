@@ -1,13 +1,14 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:testdb
-    username: sa
-    password: 
+    url: jdbc:postgresql://localhost:5432/dblai
+    username: lai
+    password: lai01
   jpa:
     properties:
      hibernate:
-     dialect: org.hibernate.dialect.H2Dialect
+     dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-     ddl-auto: create
+     ddl-auto: update
 server:
   port: 8084
+  
