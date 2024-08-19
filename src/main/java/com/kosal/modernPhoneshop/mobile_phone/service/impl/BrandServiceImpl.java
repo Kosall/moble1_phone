@@ -1,30 +1,26 @@
 package com.kosal.modernPhoneshop.mobile_phone.service.impl;
 
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 
 import com.kosal.modernPhoneshop.mobile_phone.brandSpec.BrandFilter;
 import com.kosal.modernPhoneshop.mobile_phone.brandSpec.BrandSpecification;
 import com.kosal.modernPhoneshop.mobile_phone.entities.Brand;
-import com.kosal.modernPhoneshop.mobile_phone.exception.ApiException;
 import com.kosal.modernPhoneshop.mobile_phone.exception.ResourceNotFoundException;
 import com.kosal.modernPhoneshop.mobile_phone.repository.BrandRepository;
 import com.kosal.modernPhoneshop.mobile_phone.service.BrandService;
 import com.kosal.modernPhoneshop.mobile_phone.service.util.PageUtility;
 
-import net.bytebuddy.implementation.bytecode.Throw;
+import lombok.RequiredArgsConstructor;
 @Service
+@RequiredArgsConstructor
 public class BrandServiceImpl implements BrandService{
 	@Autowired
-	private BrandRepository brandRepository;
+	private final BrandRepository brandRepository;
 
 	@Override
 	public Brand create(Brand brand) {
