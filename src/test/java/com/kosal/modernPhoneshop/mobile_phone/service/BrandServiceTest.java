@@ -32,7 +32,7 @@ public class BrandServiceTest {
 	private BrandService service;
 	@BeforeEach
 	void setUp() {
-		service=new BrandServiceImpl(brandRepository);
+		//service=new BrandServiceImpl(brandRepository);
 		
 	}
 	/*@Test
@@ -68,13 +68,13 @@ public class BrandServiceTest {
 		//given
 		Brand brand=new Brand();
 		brand.setName("Apple");
-		brand.setId(1);
+		brand.setId(1l);
 			
 		
 		//when
 		
-		when(brandRepository.findById(1)).thenReturn(Optional.of(brand));
-		Brand create = service.getById(1);
+		when(brandRepository.findById(1l)).thenReturn(Optional.of(brand));
+		Brand create = service.getById(1l);
 		
 		//then
 		assertEquals(1, create.getId());
@@ -86,9 +86,9 @@ public class BrandServiceTest {
 		//given 
 		
 		//when 
-		when(brandRepository.findById(2)).thenReturn(Optional.empty());
+		when(brandRepository.findById(2l)).thenReturn(Optional.empty());
 		//Brand brand = service.getById(2);
-		assertThatThrownBy(()->service.getById(2)).isInstanceOf(ResourceNotFoundException.class)
+		assertThatThrownBy(()->service.getById(2l)).isInstanceOf(ResourceNotFoundException.class)
 		.hasMessage(String.format("%s with id :%d not found","Brand",2));
 		
 		//then
