@@ -31,8 +31,11 @@ public class ModelServiceImpl implements ModelService {
 	@Override
 	public Model create(Model model) {
 		// TODO Auto-generated method stub
-		Long brandId = model.getBrand().getId();
-		 brandService.getById(brandId);
+		
+		/*
+		 * Long brandId = model.getBrand().getId(); brandService.getById(brandId);
+		 */
+		 
 		return modelRepository.save(model);
 	}
 
@@ -59,7 +62,6 @@ public class ModelServiceImpl implements ModelService {
 		Brand brand = brandRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Brand", lon));
 		model.setName(forUpdate.getName());
 		model.setBrand(brand);
-		
 		return model;
 	}
 
