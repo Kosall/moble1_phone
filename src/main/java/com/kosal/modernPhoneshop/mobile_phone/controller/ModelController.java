@@ -26,11 +26,12 @@ import lombok.RequiredArgsConstructor;
 public class ModelController {
 	@Autowired
 	private final ModelService modelService;
+	private final ModeEntityMapper entityMapper;
 	
 
 	@PostMapping
 	public ResponseEntity<?> create(@RequestBody ModelDTO modelDTO) {
-		Model model = ModeEntityMapper.CREATION.toModel(modelDTO);
+		Model model = entityMapper.toModel(modelDTO);
 		model = modelService.create(model);
 		return ResponseEntity.ok(ModeEntityMapper.CREATION.toModelDTO(model));
 
@@ -54,10 +55,10 @@ public class ModelController {
 	@PutMapping("{id}")
 	public ResponseEntity<?>update(@PathVariable Long id,@RequestBody ModelDTO modelDTO){
 		Model model = modelService.getModelById(id);
-		 model=ModeEntityMapper.CREATION.toModel(modelDTO);
+		 model=entityMapper.toModel(modelDTO);
 		Model updateModel = modelService.updatebyid(id, model);
 		
-		return ResponseEntity.ok(ModeEntityMapper.CREATION.toModelDTO(updateModel));
+		return ResponseEntity.ok(entityMapper.toModelDTO(updateModel));
 		
 			
 	}
