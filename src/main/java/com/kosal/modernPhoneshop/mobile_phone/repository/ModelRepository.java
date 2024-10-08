@@ -10,6 +10,7 @@ import com.kosal.modernPhoneshop.mobile_phone.entities.Model;
 @Repository
 public interface ModelRepository extends JpaRepository<Model, Long>{
 	List<Model>findByBrandId(Long id);
+	//List<Model>findBrandId(Long id);
 	
 	
 
