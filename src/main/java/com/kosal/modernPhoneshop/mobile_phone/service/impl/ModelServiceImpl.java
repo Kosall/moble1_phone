@@ -1,15 +1,12 @@
 package com.kosal.modernPhoneshop.mobile_phone.service.impl;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kosal.modernPhoneshop.mobile_phone.entities.Brand;
 import com.kosal.modernPhoneshop.mobile_phone.entities.Model;
 import com.kosal.modernPhoneshop.mobile_phone.exception.ResourceNotFoundException;
-import com.kosal.modernPhoneshop.mobile_phone.repository.BrandRepository;
 import com.kosal.modernPhoneshop.mobile_phone.repository.ModelRepository;
 import com.kosal.modernPhoneshop.mobile_phone.service.BrandService;
 import com.kosal.modernPhoneshop.mobile_phone.service.ModelService;
@@ -19,12 +16,11 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class ModelServiceImpl implements ModelService {
-	@Autowired
 	private final ModelRepository modelRepository;
-	@Autowired
+	
 	private final BrandService brandService;
-	@Autowired
-	private final BrandRepository brandRepository;
+
+	
 	
 	
 
@@ -57,13 +53,14 @@ public class ModelServiceImpl implements ModelService {
 	public Model updatebyid(Long id, Model forUpdate) {
 		// TODO Auto-generated method stub
 		 Model model = modelRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Model", id));
-		
-		Long lon = model.getBrand().getId();
-		Brand brand = brandRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Brand", lon));
 		model.setName(forUpdate.getName());
-		model.setBrand(brand);
+		model.setBrand(forUpdate.getBrand());
 		return model;
 	}
+
+	
+
+	
 
 	
 }
