@@ -23,11 +23,13 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class BrandServiceImpl implements BrandService {
-	@Autowired
+//	@Autowired
+//	private final BrandService brandService;
+	//@Autowired
 	private final BrandRepository brandRepository;
-	@Autowired
-	private final ModelRepository modelRepository;
 	
+//	 @Autowired
+//	 private final ModelRepository modelRepository;
 
 	@Override
 	public Brand create(Brand brand) {
@@ -51,7 +53,7 @@ public class BrandServiceImpl implements BrandService {
 		return brandRepository.findById(id)
 				// .orElseThrow(()->new HttpClientErrorException(HttpStatus.NOT_FOUND,"Brand
 				// with id=%d Not found!!".formatted(id)));
-				.orElseThrow(() -> new ResourceNotFoundException("Brand",id));
+				.orElseThrow(() -> new ResourceNotFoundException("Brand", id));
 	}
 
 	@Override
@@ -95,12 +97,12 @@ public class BrandServiceImpl implements BrandService {
 			String id = params.get("id");
 			filter.setId(Long.parseLong(id));
 		}
-		int pageLimit = 1;
+		int pageLimit = PageUtility.DEFAULT_PAGE_LIMIT;
 		if (params.containsKey(PageUtility.PAGE_LIMIT)) {
 			pageLimit = Integer.parseInt(params.get(PageUtility.PAGE_LIMIT));
 
 		}
-		int pageNumber = 1;
+		int pageNumber = PageUtility.DEFAULT_PAGE_NUMBER;
 		if (params.containsKey(PageUtility.PAGE_NUMBER)) {
 			pageNumber = Integer.parseInt(params.get(PageUtility.PAGE_NUMBER));
 
@@ -124,30 +126,15 @@ public class BrandServiceImpl implements BrandService {
 		return brandRepository.findAll();
 	}
 
-	@Override
-	public List<Model> getModelByBrandId(Long id) {
-		Brand brand = brandRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Brand", id));
-				brand=getById(id);
-		if(brand!=null) {
-			
-		if(brand.getId()==id) {
-				return modelRepository.findAll();
-			}
-		}
-		
-		return null;
-	}
+	
 
-	/*@Override
-	public List<Brand> getBrands(String name) {
-		// TODO Auto-generated method stub
-		return brandRepository.findByNameContaining(name);
-	}
-
-	@Override
-	public List<Brand> getBrand(String name) {
-		// TODO Auto-generated method stub
-		 return brandRepository.findByNameIgnoreCase("%" +name.toLowerCase() +"%");
-	}*/
+	/*
+	 * @Override public List<Brand> getBrands(String name) { // TODO Auto-generated
+	 * method stub return brandRepository.findByNameContaining(name); }
+	 * 
+	 * @Override public List<Brand> getBrand(String name) { // TODO Auto-generated
+	 * method stub return brandRepository.findByNameIgnoreCase("%"
+	 * +name.toLowerCase() +"%"); }
+	 */
 
 }
