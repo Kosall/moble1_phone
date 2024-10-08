@@ -16,7 +16,7 @@ public interface ModeEntityMapper {
 	
 	//
 	
-	@Mapping(target = "brandId",source = "model.id") 
+	@Mapping(target = "brandId",source = "brand.id") 
 	ModelDTO toModelDTO(Model model);
 	 
 
