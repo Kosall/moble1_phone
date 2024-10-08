@@ -14,7 +14,7 @@ public interface BrandService {
 	Brand update(Long id,Brand uptodate);
 	List<Brand>getBrands();
 	void remove(Long id);
-	List<Model>getModelByBrandId(Long id);
+	//List<Model>getByBrand(Long id);
 	//List<Brand>getBrands(String name);
 	//List<Brand> getBrand(String name);
 	//List<Brand>getBrands(Map<String, String> params);
