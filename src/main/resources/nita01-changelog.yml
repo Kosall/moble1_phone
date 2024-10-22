@@ -1,0 +1,90 @@
+databaseChangeLog:
+- changeSet:
+    id: 1728942932868-1
+    author: hsc (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 1
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: hibernate_sequence
+        startValue: 1
+- changeSet:
+    id: 1728942932868-2
+    author: hsc (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 1
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: my_sequence_name
+        startValue: 1
+- changeSet:
+    id: 1728942932868-3
+    author: hsc (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: brands_pkey
+            name: brand_id
+            type: BIGINT
+        - column:
+            name: brand_name
+            type: VARCHAR(20)
+        tableName: brands
+- changeSet:
+    id: 1728942932868-4
+    author: hsc (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: models_pkey
+            name: model_id
+            type: BIGINT
+        - column:
+            name: model_name
+            type: VARCHAR(20)
+        - column:
+            name: brand_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: id
+            type: BIGINT
+        - column:
+            name: name
+            type: VARCHAR(255)
+        tableName: models
+- changeSet:
+    id: 1728942932868-5
+    author: hsc (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: brand_id
+        baseTableName: models
+        constraintName: fk_models_brands
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: brand_id
+        referencedTableName: brands
+        validate: true
+
