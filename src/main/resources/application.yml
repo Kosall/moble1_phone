@@ -8,10 +8,15 @@ spring:
       hibernate:
       dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-          ddl-auto: update
+        ddl-auto: update
+  liquibase:
+    change-log: classpath:db/changelog/db_changelog_master.yml
+    enabled: true
+    
   mvc:
      pathmatch:
           matching-strategy: ant_path_matcher
+  
 server:
   port: 8084
 
